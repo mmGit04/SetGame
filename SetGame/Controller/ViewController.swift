@@ -10,11 +10,11 @@ import UIKit
 
 class ViewController: UIViewController {
     
-    private var game = SetGame()
+    // Outlets
+    @IBOutlet var cardButtons: [UIButton]!
     
-    @IBAction func newGame(_ sender: UIButton) {
-        
-    }
+    // Variables
+    private var game = SetGame()
     private var numberOfFreeSlots: Int {
         get {
             var value = 0
@@ -37,13 +37,16 @@ class ViewController: UIViewController {
         updateUI()
     }
     
-    @IBOutlet var cardButtons: [UIButton]!
+    // Actions
+    @IBAction func newGame(_ sender: UIButton) {
+        game = SetGame()
+        updateUI()
+    }
     
     @IBAction func dealThreeMore(_ sender: UIButton) {
         game.addThreeMoreCards()
         updateUI()
     }
-    
     
     @IBAction func selectCard(_ sender: UIButton) {
         let selectedIndex = cardButtons.firstIndex(of: sender)!
@@ -52,7 +55,7 @@ class ViewController: UIViewController {
     }
     
     
-    func updateUI() {
+    private func updateUI() {
         for index in 0..<cardButtons.count {
             if let cardForButton = game.displayedCards[index] {
                 let attributes: [NSAttributedString.Key :Any]  = [
@@ -64,7 +67,6 @@ class ViewController: UIViewController {
                 cardButtons[index].isHidden = false
             } else {
                 cardButtons[index].isHidden = true
-                
             }
         }
         
@@ -87,7 +89,8 @@ class ViewController: UIViewController {
             }
         }
     }
-    func initUI() {
+    
+    private func initUI() {
         for i in cardButtons.indices {
             if i < 12 {
                 cardButtons[i].isHidden = false
@@ -100,7 +103,7 @@ class ViewController: UIViewController {
 }
 
 extension ViewController {
-    func getColor(color: Card.Color, shade: Card.Shading) -> UIColor {
+   private func getColor(color: Card.Color, shade: Card.Shading) -> UIColor {
         var finalColor: UIColor
         switch color {
         case .blue: finalColor = UIColor.blue
@@ -114,8 +117,8 @@ extension ViewController {
         }
         return finalColor
     }
-
-    func getSymbol(shape: Card.Shape, number: Int) -> String {
+    
+    private func getSymbol(shape: Card.Shape, number: Int) -> String {
         let symbol:String
         switch shape {
         case .circle: symbol = "●"

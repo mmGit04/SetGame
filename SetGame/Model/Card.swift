@@ -8,13 +8,11 @@
 
 import Foundation
 
-
 struct Card {
     let shape: Shape
     let shading: Shading
     let number: Int
     let color: Color
-    
     
     enum Color: Equatable, CaseIterable{
         case blue
@@ -34,7 +32,6 @@ struct Card {
         case stripped
         
     }
-    
 }
 
 

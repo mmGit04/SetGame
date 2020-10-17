@@ -9,10 +9,8 @@
 import Foundation
 
 class SetGame{
-    // Ovde su svih 81 kartica 
+    
     private var cards = [Card]()
-    // Na odredjenom indexu se nalazi neka kartica, na osnovu indexa dohvatam karticu
-    // Ako je displayedCard[i]=nil onda taj button ne prikazujem
     private(set) var displayedCards = [Card?]()
     private(set) var selectedCards = [Int]()
     
